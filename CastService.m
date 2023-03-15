@@ -288,6 +288,9 @@ static NSString *const kSubtitleTrackDefaultLanguage = @"en";
 
     if (self.connected)
         [self disconnect];
+    dispatch_on_main(^{
+        [self.delegate deviceService:self didFailConnectWithError:error];
+    });
 }
 
 - (void)deviceManager:(GCKDeviceManager *)deviceManager didFailToStopApplicationWithError:(NSError *)error
